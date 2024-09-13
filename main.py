@@ -12,7 +12,6 @@ def calc(string):
         number_sym2 = determine_digit(data[1])
         number1 = int(str(number_sym1) + str(number_sym2))
     
-    print(number1)
     
     # определяем второе число
     if data[1] in operations and len(data) == 3 or data[2] in operations and len(data) == 4:
@@ -23,7 +22,6 @@ def calc(string):
         number2 = int(str(number_sym1) + str(number_sym2))
 
     
-    print(number2)
 
     # определяем операцию
     if data[1] in operations:
@@ -39,7 +37,6 @@ def calc(string):
     elif operation == 'умножить':
         result = number1 * number2
     
-    print(result)
     
     # переводим результат в словесную форму
     if result in range(0,20) or result in tens:
