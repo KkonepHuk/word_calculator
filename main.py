@@ -1,52 +1,58 @@
-def calc(string):
-    operations = ['плюс', 'минус', 'умножить']
-    tens = [20, 30, 40, 50, 60, 70, 80, 90]
-    string = string.lower()
-    data = string.split()
+def calc():
+    while True:
+        try:
+            string = input()
+            operations = ['плюс', 'минус', 'умножить']
+            tens = [20, 30, 40, 50, 60, 70, 80, 90]
+            string = string.lower()
+            data = string.split()
 
-    # определяем первое число
-    if data[1] in operations:
-        number1 = determine_digit(data[0])
-    elif data[2] in operations:
-        number_sym1 = determine_tens(data[0])
-        number_sym2 = determine_digit(data[1])
-        number1 = int(str(number_sym1) + str(number_sym2))
-    
-    
-    # определяем второе число
-    if data[1] in operations and len(data) == 3 or data[2] in operations and len(data) == 4:
-        number2 = determine_digit(data[-1])
-    elif (data[1] in operations and len(data) == 4) or (data[2] in operations and len(data) == 5):
-        number_sym1 = determine_tens(data[-2])
-        number_sym2 = determine_digit(data[-1])
-        number2 = int(str(number_sym1) + str(number_sym2))
+            # определяем первое число
+            if data[1] in operations:
+                number1 = determine_digit(data[0])
+            elif data[2] in operations:
+                number_sym1 = determine_tens(data[0])
+                number_sym2 = determine_digit(data[1])
+                number1 = int(str(number_sym1) + str(number_sym2))
+            
+            
+            # определяем второе число
+            if data[1] in operations and len(data) == 3 or data[2] in operations and len(data) == 4:
+                number2 = determine_digit(data[-1])
+            elif (data[1] in operations and len(data) == 4) or (data[2] in operations and len(data) == 5):
+                number_sym1 = determine_tens(data[-2])
+                number_sym2 = determine_digit(data[-1])
+                number2 = int(str(number_sym1) + str(number_sym2))
 
-    
+            
 
-    # определяем операцию
-    if data[1] in operations:
-        operation = data[1]
-    elif data[2] in operations:
-        operation = data[2]
+            # определяем операцию
+            if data[1] in operations:
+                operation = data[1]
+            elif data[2] in operations:
+                operation = data[2]
 
-    # подсчитываем результат в числовой форме
-    if operation == 'плюс':
-        result = number1 + number2
-    elif operation == 'минус':
-        result = number1 - number2
-    elif operation == 'умножить':
-        result = number1 * number2
-    
-    
-    # переводим результат в словесную форму
-    if result in range(0,20) or result in tens:
-        word_result = digits_to_strings(result)
-    elif len(str(result)) == 2:
-        word_result1 = tens_to_string(int(str(result)[0]))
-        word_result2 = digits_to_strings(int(str(result)[1]))
-        word_result = word_result1 + ' ' + word_result2
-    
-    print(word_result)
+            # подсчитываем результат в числовой форме
+            if operation == 'плюс':
+                result = number1 + number2
+            elif operation == 'минус':
+                result = number1 - number2
+            elif operation == 'умножить':
+                result = number1 * number2
+            
+            
+            # переводим результат в словесную форму
+            if result in range(0,20) or result in tens:
+                word_result = digits_to_strings(result)
+            elif len(str(result)) == 2:
+                word_result1 = tens_to_string(int(str(result)[0]))
+                word_result2 = digits_to_strings(int(str(result)[1]))
+                word_result = word_result1 + ' ' + word_result2
+            
+            print(word_result)
+            break
+        except:
+            print('Неверный ввод. Попробуйте ещё.')
 
 def determine_digit(str_number):
     match str_number:
@@ -208,4 +214,4 @@ def tens_to_string(number):
             string = 'девяносто'
     return string
 
-calc(input())
+calc()
